@@ -34,7 +34,6 @@ import subprocess as su
 import sys
 
 import click
-import coloredlogs
 
 # This prevents it from getting in our way.
 from click import core
@@ -147,6 +146,7 @@ class IOCLogger(object):
         if os.geteuid() == 0:
             logging.config.dictConfig(default_logging)
 
+        import coloredlogs
         handler = InfoHandler()
         handler.setFormatter(coloredlogs.ColoredFormatter(
             fmt="%(message)s",
