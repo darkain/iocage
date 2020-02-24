@@ -25,7 +25,6 @@
 
 import locale
 import logging
-import logging.config
 import logging.handlers
 import os
 import signal
@@ -143,6 +142,7 @@ class IOCLogger(object):
             cli_colors = {}
 
         if os.geteuid() == 0:
+            import logging.config
             logging.config.dictConfig(default_logging)
 
         import coloredlogs
