@@ -28,7 +28,6 @@ import logging
 import logging.config
 import logging.handlers
 import os
-import re
 import signal
 import subprocess as su
 import sys
@@ -168,12 +167,13 @@ class IOCageCLI(click.MultiCommand):
     """
 
     def list_commands(self, ctx):
+        import re
         rv = []
 
         for filename in os.listdir(cmd_folder):
             if filename.endswith('.py') and \
                     not filename.startswith('__init__'):
-                rv.append(re.sub(".py$", "", filename))
+                 rv.append(re.sub(".py$", "", filename))
         rv.sort()
 
         return rv
