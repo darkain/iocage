@@ -35,7 +35,7 @@ import sys
 
 import click
 import coloredlogs
-import iocage_lib.ioc_check as ioc_check
+
 # This prevents it from getting in our way.
 from click import core
 from iocage_lib.ioc_common import set_interactive
@@ -253,9 +253,11 @@ def cli(version, force, debug):
                 skip_check = True
                 os.environ["IOCAGE_FORCE"] = "TRUE"
                 os.environ["IOCAGE_SKIP"] = "TRUE"
+                import iocage_lib.ioc_check as ioc_check
                 ioc_check.IOCCheck(silent=True)
 
         if not skip_check:
+            import iocage_lib.ioc_check as ioc_check
             ioc_check.IOCCheck()
     except RuntimeError as err:
         exit(err)
